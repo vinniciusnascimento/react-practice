@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Tasks from "./components/Tasks"
+import AddTask from "./components/AddTask";
 
 function App() {
   const [tasks, setTasks] = useState(
@@ -39,8 +40,9 @@ function App() {
   }
 
   return (
-    <div className="bg-gray-600 w-screen h-screen">
+    <div className="bg-gray-600 w-screen h-screen flex flex-col gap-4">
       <h1 className="text-white text-2xl text-center font-bold p-5">Gerenciador de Tarefas</h1>
+      <AddTask />
       <Tasks arrayLength={tasks.length} tasks={tasks} onTaskClick={onTaskClick} onButtonTrashClick={onButtonTrashClick} />
     </div>
   )
