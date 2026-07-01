@@ -3,22 +3,7 @@ import Tasks from "./components/Tasks"
 import AddTask from "./components/AddTask";
 
 function App() {
-  const [tasks, setTasks] = useState(
-    [
-      {
-        id: 1,
-        title: "Estudar programação",
-        description: "Estudar react e nodejs",
-        isCompleted: false,
-      },
-      {
-        id: 2,
-        title: "Estudar programação",
-        description: "Estudar react e nodejs",
-        isCompleted: true,
-      },
-    ]
-  )
+  const [tasks, setTasks] = useState([])
 
 
   function onTaskClick(id) {
@@ -33,16 +18,27 @@ function App() {
     setTasks(newTasks)
   }
 
-  function onButtonTrashClick(id){
+  function onButtonTrashClick(id) {
     const newTasks = tasks.filter((task) => task.id !== id)
 
     setTasks(newTasks)
   }
 
+  function addTask(title, description) {
+    const newTask = {
+      id: tasks.length + 1,
+      title,
+      description,
+      isCompleted: false,
+    }
+
+    setTasks([...tasks, newTask])
+  }
+
   return (
     <div className="bg-gray-600 w-screen h-screen flex flex-col gap-4">
       <h1 className="text-white text-2xl text-center font-bold p-5">Gerenciador de Tarefas</h1>
-      <AddTask />
+      <AddTask addTask={addTask} />
       <Tasks arrayLength={tasks.length} tasks={tasks} onTaskClick={onTaskClick} onButtonTrashClick={onButtonTrashClick} />
     </div>
   )
