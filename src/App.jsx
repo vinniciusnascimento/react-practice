@@ -32,10 +32,16 @@ function App() {
     setTasks(newTasks)
   }
 
+  function onButtonTrashClick(id){
+    const newTasks = tasks.filter((task) => task.id !== id)
+
+    setTasks(newTasks)
+  }
+
   return (
     <div className="bg-gray-600 w-screen h-screen">
       <h1 className="text-white text-2xl text-center font-bold p-5">Gerenciador de Tarefas</h1>
-      <Tasks tasks={tasks} onTaskClick={onTaskClick} />
+      <Tasks arrayLength={tasks.length} tasks={tasks} onTaskClick={onTaskClick} onButtonTrashClick={onButtonTrashClick} />
     </div>
   )
 }
